@@ -1,4 +1,4 @@
-const { LavaClient } = require("@anonymousg/lavajs");
+const { LavaClient } = require("../../../NPM/LavaJS/dist");
 const { sm } = require("../utils");
 
 module.exports = async (bot) => {
@@ -22,16 +22,27 @@ module.exports = async (bot) => {
     console.log(`Node connected: ${node.options.host}`)
   );
   bot.music.on("nodeError", console.error);
+  bot.music.on("nodeClose", (n, e) => console.log(e));
+  bot.music.on("nodeReconnect", (n) => console.log(n.options.host));
+
   bot.music.on("trackPlay", (track, player) => {
     const { title, length, uri } = track;
     player.options.textChannel.send(
       sm.success(`Now playing [${title}](${uri}) - \`${length}\`!`)
     );
   });
+
   bot.music.on("queueOver", (player) => {
     player.options.textChannel.send(
       sm.success(`Your current queue has ended. Leaving voice channel!`)
     );
-    player.destroy(player.options.guild.id);
+    player.destroy();
+  });
+
+  bot.music.on("createPlayer", (player) => {
+    console.log(`New player with ID "${player.options.guild.id}" created`);
+  });
+  bot.music.on("destroyPlayer", (player) => {
+    console.log(`Player with ID "${player.options.guild.id}" destroyed!`);
   });
 };

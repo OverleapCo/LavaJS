@@ -1,6 +1,6 @@
-const { formatTime } = require("functions");
+const { formatTime } = require("./functions");
 
 module.exports = {
-  sm: require("embeds"),
+  sm: require("./embeds"),
   formatTime,
 };
