@@ -13,8 +13,13 @@ module.exports = {
       queueRepeat: false,
       skipOnError: false,
     });
-    console.log(bot.music.playerCollection);
 
-    player.destroy();
+    const track = await player.lavaSearch(song, message.member, true);
+    await player.node.wsSend({
+      op: "play",
+      track: track.trackString,
+      guildId: player.options.guild.id,
+      volume: player.volume,
+    });
   },
 };
