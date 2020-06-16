@@ -1,5 +1,6 @@
 const { LavaClient } = require("../../../NPM/LavaJS/dist");
-const { sm } = require("../utils");
+const { sm, formatTime } = require("../utils");
+const { nodes } = require("../config.json");
 
 module.exports = async (bot) => {
   await bot.user.setPresence({
@@ -9,26 +10,25 @@ module.exports = async (bot) => {
     },
   });
 
-  const nodes = [
-    {
-      host: "localhost",
-      port: 2333,
-      password: "TeamX",
-    },
-  ];
-
   bot.music = new LavaClient(bot, nodes);
   bot.music.on("nodeSuccess", (node) =>
     console.log(`Node connected: ${node.options.host}`)
   );
   bot.music.on("nodeError", console.error);
 
-  bot.music.on("trackPlay", (player, track) => {
-    const { title, length, uri } = track;
-    console.log(track);
-    /*player.options.textChannel.send(
-      sm.success(`Now playing [${title}](${uri}) - \`${length}\`!`)
-    );*/
+  bot.music.on("trackPlay", (track, player) => {
+    const { title, length, uri, thumbnail, user } = track;
+    player.options.textChannel.send(
+      sm.embed
+        .setAuthor("New Track Playing")
+        .setTitle(`${title}`)
+        .setDescription(
+          `Requested by ${user}. Track length: ${formatTime(length)}`
+        )
+        .setURL(uri)
+        .setImage(thumbnail.medium)
+        .setColor("RANDOM")
+    );
   });
 
   bot.music.on("queueOver", (player) => {

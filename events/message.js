@@ -9,7 +9,8 @@ module.exports = (bot, message) => {
   const command = bot.commands.find(
     (c) =>
       c.name.toLowerCase() === cmd.toLowerCase() ||
-      c.aliases.map((a) => a.toLowerCase()).includes(cmd.toLowerCase())
+      (c.aliases &&
+        c.aliases.map((a) => a.toLowerCase()).includes(cmd.toLowerCase()))
   );
   if (!command) return;
 
