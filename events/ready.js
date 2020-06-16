@@ -1,4 +1,4 @@
-const { LavaClient } = require("../../../NPM/LavaJS/dist");
+const { LavaClient } = require("@anonymousg/lavajs");
 const { sm, formatTime } = require("../utils");
 const { nodes } = require("../config.json");
 
