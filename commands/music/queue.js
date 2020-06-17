@@ -1,4 +1,4 @@
-const { sm, formatTime } = require("../../utils");
+const { sm, formatTime, embed } = require("../../utils");
 
 module.exports = {
   name: "queue",
@@ -8,7 +8,7 @@ module.exports = {
     if (!player)
       return await message.channel.send(sm.error("No players in this server!"));
 
-    const embed = sm.embed
+    const queue = new embed()
       .setTitle("Music Queue")
       .setDescription(
         [
@@ -23,6 +23,6 @@ module.exports = {
       data += `[${i + 1}] [${title}](${uri}) - ${formatTime(length)}\n`;
     }
 
-    await message.channel.send(embed.addField("Track List", data.trim()));
+    await message.channel.send(queue.addField("Track List", data.trim()));
   },
 };

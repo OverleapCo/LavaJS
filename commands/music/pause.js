@@ -10,7 +10,7 @@ module.exports = {
 
     if (!player.playing)
       return await message.channel.send(
-        sm.error("Not playing any tracks right now!")
+        sm.error("No songs are being played right now!")
       );
 
     if (!player.paused) await player.pause();

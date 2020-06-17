@@ -1,26 +1,29 @@
 const { sm } = require("../../utils");
 
 module.exports = {
-  name: "volume",
-  description: "Change volume of the song",
+  name: "seek",
+  description: "Seek the track",
   run: async (bot, message, args) => {
     const player = await bot.music.playerCollection.get(message.guild.id);
     if (!player)
       return await message.channel.send(sm.error("No players in this server!"));
-
     if (!player.playing)
       return await message.channel.send(
         sm.error("No songs are being played right now!")
       );
 
-    if (isNaN(args[0]) || parseInt(args[0]) > 1000 || parseInt(args[0]) < 0)
+    if (
+      isNaN(args[0]) ||
+      parseInt(args[0]) > player.queue[0].length ||
+      parseInt(args[0]) < 0
+    )
       return message.channel.send(
-        sm.error(`Volume must be a number and between 0 and 1000!`)
+        sm.error(
+          `Volume must be a number and between 0 and ${player.queue[0].length}!`
+        )
       );
-    player.setVolume(parseInt(args[0]));
+    player.seek(parseInt(args[0]));
 
-    await message.channel.send(
-      sm.success(`Volume set to: \`${player.volume}\`!`)
-    );
+    await message.channel.send(sm.success(`Seeked the current track!`));
   },
 };

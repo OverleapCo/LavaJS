@@ -1,5 +1,5 @@
 const { LavaClient } = require("@anonymousg/lavajs");
-const { sm, formatTime } = require("../utils");
+const { sm, formatTime, embed } = require("../utils");
 const { nodes } = require("../config.json");
 
 module.exports = async (bot) => {
@@ -19,7 +19,7 @@ module.exports = async (bot) => {
   bot.music.on("trackPlay", (track, player) => {
     const { title, length, uri, thumbnail, user } = track;
     player.options.textChannel.send(
-      sm.embed
+      new embed()
         .setAuthor("New Track Playing")
         .setTitle(`${title}`)
         .setDescription(

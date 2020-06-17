@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/ThatAnonymousG/LavaJS#readme",
   "dependencies": {
-    "@anonymousg/lavajs": "^2.0.8",
-    "discord.js": "^12.2.0"
+    "@anonymousg/lavajs": "^3.1.0",
+    "discord.js": "^12.2.0",
+    "erela.js": "^1.1.8"
   }
 }

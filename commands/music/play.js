@@ -5,11 +5,15 @@ module.exports = {
   description: "Play a song",
   usage: "<Song Name>",
   run: async (bot, message, args) => {
+    const { channel } = message.member.voice;
+    if (!channel)
+      return message.channel.send(
+        sm.error(`You need to be in a voice channel!`)
+      );
     const song = args.join(" ");
-
-    const player = await bot.music.spawnPlayer(bot.music, {
+    const player = await bot.music.spawnPlayer({
       guild: message.guild,
-      voiceChannel: message.member.voice.channel,
+      voiceChannel: channel,
       textChannel: message.channel,
       deafen: true,
       trackRepeat: false,
@@ -33,19 +37,8 @@ module.exports = {
         sm.success(
           [
             `Track added to queue!`,
-            `- Name: [${res.title}](${res.uri})`,
-            `- Duration: ${formatTime(res.length)}`,
-          ].join("\n")
-        )
-      );
-    } else if (res.trackString) {
-      await player.queue.add(res);
-      await message.channel.send(
-        sm.success(
-          [
-            `Track added to queue!`,
-            `- Name: [${res.title}](${res.uri})`,
-            `- Duration: ${formatTime(res.length)}`,
+            `- Name: [${res[0].title}](${res[0].uri})`,
+            `- Duration: ${formatTime(res[0].length)}`,
           ].join("\n")
         )
       );

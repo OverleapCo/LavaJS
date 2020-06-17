@@ -7,5 +7,4 @@ module.exports = {
   success: function (content) {
     return new MessageEmbed().setDescription(content).setColor("#4caf50");
   },
-  embed: new MessageEmbed(),
 };

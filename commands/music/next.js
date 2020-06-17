@@ -7,7 +7,7 @@ module.exports = {
     const player = await bot.music.playerCollection.get(message.guild.id);
     if (!player)
       return await message.channel.send(sm.error("No players in this server!"));
-    if (player.queue.size !== 1)
+    if (player.queue.size === 1)
       return await message.channel.send(
         sm.error(`No more tracks in the queue!`)
       );
