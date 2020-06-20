@@ -18,9 +18,9 @@ module.exports = {
       );
     let data = "";
 
-    for (let i = 0; i < player.queue.size; i++) {
-      const { title, length, uri } = player.queue[i];
-      data += `[${i + 1}] [${title}](${uri}) - ${formatTime(length)}\n`;
+    for ([k, v] of player.queue.KVArray()) {
+      const { title, length, uri } = v;
+      data += `[${k}] [${title}](${uri}) - ${formatTime(length)}\n`;
     }
 
     await message.channel.send(queue.addField("Track List", data.trim()));

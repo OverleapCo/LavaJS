@@ -11,10 +11,10 @@ module.exports = {
       return await message.channel.send(
         sm.error(`No more tracks in the queue!`)
       );
-    if (player.queue[0].user !== message.member)
+    if (player.queue.first.user !== message.member)
       return await message.channel.send(
         sm.error(
-          `Sorry the track was added by ${player.queue[0].user} so only he can skip!`
+          `Sorry the track was added by ${player.queue.first.user} so only he can skip!`
         )
       );
 

@@ -14,12 +14,12 @@ module.exports = {
 
     if (
       isNaN(args[0]) ||
-      parseInt(args[0]) > player.queue[0].length ||
+      parseInt(args[0]) > player.queue.first.length ||
       parseInt(args[0]) < 0
     )
       return message.channel.send(
         sm.error(
-          `Volume must be a number and between 0 and ${player.queue[0].length}!`
+          `Volume must be a number and between 0 and ${player.queue.first.length}!`
         )
       );
     player.seek(parseInt(args[0]));
