@@ -1,32 +1,25 @@
 {
-  "name": "music",
-  "version": "1.0.0",
-  "description": "A music bot example with LavaJS",
-  "main": "index.js",
-  "scripts": {
-    "test": "node ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ThatAnonymousG/LavaJS.git"
-  },
-  "keywords": [
-    "bot",
-    "discordjs",
-    "discord",
-    "music",
-    "lavajs",
-    "lavalink"
-  ],
-  "author": "ThatAnonymousG",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ThatAnonymousG/LavaJS/issues"
-  },
-  "homepage": "https://github.com/ThatAnonymousG/LavaJS#readme",
-  "dependencies": {
-    "@anonymousg/lavajs": "^3.1.0",
-    "discord.js": "^12.2.0",
-    "erela.js": "^1.1.8"
-  }
+	"name": "music",
+	"version": "1.0.0",
+	"description": "A music bot example with LavaJS",
+	"main": "index.js",
+	"scripts": {
+		"test": "node ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ThatAnonymousG/LavaJS.git"
+	},
+	"keywords": [ "bot", "discordjs", "discord", "music", "lavajs", "lavalink" ],
+	"author": "ThatAnonymousG",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ThatAnonymousG/LavaJS/issues"
+	},
+	"homepage": "https://github.com/ThatAnonymousG/LavaJS#readme",
+	"dependencies": {
+		"@anonymousg/lavajs": "^3.3.1",
+		"discord.js": "^12.2.0",
+		"erela.js": "^1.1.8"
+	}
 }
